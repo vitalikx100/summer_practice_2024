@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Создание магазина{% endblock %}
+
+{% block content %}
+<h1>Создать магазин</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Название магазина" class="form-control"><br>
+    <input type="text" placeholder="Город" class="form-control"><br>
+    <input type="text" placeholder="Улица" class="form-control"><br>
+    <input type="text" placeholder="Дом" class="form-control"><br>
+    <input type="time" class="form-control"> <label class="form-label">Время открытия</label><br>
+    <input type="time" class="form-control"> <label class="form-label">Время закрытия</label><br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}
