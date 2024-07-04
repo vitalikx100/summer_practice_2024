@@ -1,0 +1,10 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Города{% endblock %}
+
+{% block content %}
+<h1>Список городов</h1>
+{% for val in values %}
+<p>{{ val }}</p>
+{% endfor %}
+{% endblock %}
