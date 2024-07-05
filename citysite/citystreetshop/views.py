@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import ShopForm
+from .models import City, Street, Shop
+from django.views.generic import DetailView, ListView
 
+class CityStreet(DetailView):
+    model = Street
+    template_name = 'citystreetshop/street.html'
+    context_object_name = 'street'
 
-def city_home(request):
-    return render(request, 'citystreetshop/city.html')
+def city_all(request):
+    cities = City.objects.all()
+    return render(request, 'citystreetshop/city.html', {'cities': cities})
 
 
 def shop_create(request):

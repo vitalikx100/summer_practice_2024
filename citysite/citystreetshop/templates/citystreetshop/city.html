@@ -3,8 +3,10 @@
 {% block title %}Города{% endblock %}
 
 {% block content %}
+
 <h1>Список городов</h1>
-{% for val in values %}
-<p>{{ val }}</p>
+{% for el in cities %}
+    <h3><a href="{% url 'city-street' el.id %}">{{ el.title }}</a></h3><br>
 {% endfor %}
+
 {% endblock %}
