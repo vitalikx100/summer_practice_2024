@@ -11,6 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'main' %}">Navbar</a>
         <a class="navbar-brand" href="{% url 'cities' %}">Список городов</a>
+        <a class="navbar-brand" href="{% url 'shops_view' %}">Список Магазинов</a>
         <a class="navbar-brand" href="{% url 'shop_create' %}">Добавить магазин</a>
     </nav>
     <main> {% block content %}{% endblock %}</main>
