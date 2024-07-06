@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Магазины{% endblock %}
+
+{% block content %}
+
+<h1>Список магазинов</h1>
+<ul>
+    {% for shop in shops %}
+    <li>{{ shop.title }} ({{ shop.city.title }}, {{ shop.street.title }}, {{ shop.building }})</li>
+    {% empty %}
+    <li>По вашему запросу нет магазинов</li>
+    {% endfor %}
+</ul>
+{% endblock %}
