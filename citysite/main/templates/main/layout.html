@@ -9,9 +9,10 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Navbar</a>
-        <a class="navbar-brand" href="city">Список городов</a>
+        <a class="navbar-brand" href="{% url 'main' %}">Navbar</a>
+        <a class="navbar-brand" href="{% url 'cities' %}">Список городов</a>
+        <a class="navbar-brand" href="{% url 'shop_create' %}">Добавить магазин</a>
     </nav>
-  {% block content %}{% endblock %}
+    <main> {% block content %}{% endblock %}</main>
 </body>
 </html>

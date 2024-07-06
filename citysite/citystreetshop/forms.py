@@ -1,7 +1,7 @@
 from .models import City
 from .models import Street
 from .models import Shop
-from django.forms import ModelForm, TextInput, TimeInput
+from django.forms import ModelForm, TextInput, TimeInput, Select
 
 class ShopForm(ModelForm):
     class Meta:
@@ -13,11 +13,11 @@ class ShopForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Название магазина'
             }),
-            'city': TextInput(attrs={
+            'city': Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Город'
             }),
-            'street': TextInput(attrs={
+            'street': Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Улица'
             }),
