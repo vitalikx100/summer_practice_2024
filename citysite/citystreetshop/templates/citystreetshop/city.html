@@ -5,8 +5,10 @@
 {% block content %}
 
 <h1>Список городов</h1>
+<ul>
 {% for el in cities %}
-    <h3><a href="{% url 'city-street' el.id %}">{{ el.title }}</a></h3><br>
+    <li><h3><a href="{% url 'city-street' el.id %}">{{ el.title }}</a></h3></li>
 {% endfor %}
+</ul>
 
 {% endblock %}

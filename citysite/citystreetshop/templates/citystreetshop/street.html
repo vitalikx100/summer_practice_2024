@@ -4,7 +4,11 @@
 
 {% block content %}
 
-<h1>Улицы города {{ street.city.title }}</h1><br>
-<h3>{{ street.title }}</h3><br>
+<h1>Улицы города {{ city.title }}</h1>
+<ul>
+    {% for street in streets %}
+    <li><h3 class="streets">{{ street.title }}</h3></li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

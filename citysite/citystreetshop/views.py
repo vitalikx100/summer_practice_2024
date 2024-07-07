@@ -1,16 +1,21 @@
 from django.shortcuts import render, redirect
 from .forms import ShopForm
 from .models import City, Street, Shop
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
 from django.utils import timezone
-import datetime
 from django.db.models import Q, F
 
 
 class CityStreet(DetailView):
-    model = Street
+    model = City
     template_name = 'citystreetshop/street.html'
-    context_object_name = 'street'
+    context_object_name = 'city'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        city = self.object
+        context['streets'] = Street.objects.filter(city=city)
+        return context
 
 
 def city_all(request):
