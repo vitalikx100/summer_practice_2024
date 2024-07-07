@@ -4,6 +4,13 @@ from .models import City, Street, Shop
 from django.views.generic import DetailView
 from django.utils import timezone
 from django.db.models import Q, F
+from rest_framework import generics
+from .serializers import CitySerializer
+
+
+class CityAPIAll(generics.ListAPIView):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer
 
 
 class CityStreet(DetailView):
