@@ -3,11 +3,11 @@
 {% block title %}Магазины{% endblock %}
 
 {% block content %}
-
+<h3 class="timezone">{{ current_time }}</h3>
 <h1>Список магазинов</h1>
 <ul>
     {% for shop in shops %}
-    <li>{{ shop.title }} ({{ shop.city.title }}, {{ shop.street.title }}, {{ shop.building }})</li>
+    <li><big>{{ shop.title }} ({{ shop.city.title }}, {{ shop.street.title }}, {{ shop.building }})</big></li>
     {% empty %}
     <li>По вашему запросу нет магазинов</li>
     {% endfor %}

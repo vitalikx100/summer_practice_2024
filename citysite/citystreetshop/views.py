@@ -43,7 +43,7 @@ def shop_view(request):
     city_id = request.GET.get('city')
     is_open = request.GET.get('open')
 
-    current_time = timezone.now().time()
+    current_time = timezone.localtime(timezone.now())
 
     shops = Shop.objects.all()
 
@@ -67,15 +67,9 @@ def shop_view(request):
                 Q(time_open__gt=F('time_close')) & (Q(time_open__lte=current_time) | Q(time_close__gte=current_time))
             )
 
-    # if is_open is not None:
-        #        is_open = int(is_open)
-        #       if is_open == 1:
-        #            shops = shops.filter(time_open__lte=current_time, time_close__gte=current_time)
-        #       elif is_open == 0:
-        #           shops = shops.exclude(time_open__lte=current_time, time_close__gte=current_time)
-
     data = {
         'shops': shops,
+        'current_time': current_time
     }
 
     return render(request, 'citystreetshop/shops_view.html', data)
