@@ -1,15 +1,48 @@
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
 from .forms import ShopForm
 from .models import City, Street, Shop
 from django.views.generic import DetailView
 from django.utils import timezone
 from django.db.models import Q, F
-from rest_framework import generics
+from rest_framework import generics, status
 from .serializers import CitySerializer, ShopSerializer
+from django_filters import rest_framework
+
+class ShopFilter(rest_framework.FilterSet):
+    city = rest_framework.NumberFilter(field_name="city_id")
+    street = rest_framework.NumberFilter(field_name="street_id")
+    open = rest_framework.BooleanFilter(method='filter_by_open', label='Open')
+
+    def filter_by_open(self, queryset, name, value):
+        current_time = timezone.localtime(timezone.now())
+        if value:
+            queryset = queryset.filter(time_open__lte=current_time, time_close__gte=current_time)
+        else:
+            queryset = queryset.exclude(time_open__lte=current_time, time_close__gte=current_time)
+        return queryset
+
+    class Meta:
+            model = Shop
+            fields = ['city', 'street', 'open']
+
 
 class ShopCreateAPIView(generics.ListCreateAPIView):
     queryset = Shop.objects.all()
     serializer_class = ShopSerializer
+    filter_backends = [
+        rest_framework.DjangoFilterBackend,
+    ]
+    filterset_class = ShopFilter
+
+    def perform_create(self, serializer):
+        self.instance = serializer.save()
+
+    def create(self, request, *args, **kwargs):
+        super().create(request, *args, **kwargs)
+        return Response({'id': self.instance.id})
+
+
 
 
 class CityAPIAll(generics.ListAPIView):
