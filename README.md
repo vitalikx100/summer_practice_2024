@@ -4,20 +4,20 @@
 
 3.Проект содержит в себе три модели Shop, Street, City. 
  
-		С помощью Django и Django Rest framework сделано взаимодействие с приложением GET и POST запросами для получения подробной информации, характерной для данных моделей. 
-	 
-		Реализация GET и POST запросов сделана при помощи Django REST framework
-	 
-		Дополнительно сделана реализация тех же запросов на Django(ответ после запросов выводитcя на html+css templates), методы и классы также находятся в citystreetshop/views.py) 
-	 
-		Используется СУБД SQLite3 для работы с базой данных
-	 
-		В приложении main расположен только код некоторых html templates + static.css, весь основной код расположен в приложении citystreetshop.
+	С помощью Django и Django Rest framework сделано взаимодействие с приложением GET и POST запросами для получения подробной информации, характерной для данных моделей. 
+ 
+	Реализация GET и POST запросов сделана при помощи Django REST framework
+ 
+	Дополнительно сделана реализация тех же запросов на Django(ответ после запросов выводитcя на html+css templates), методы и классы также находятся в citystreetshop/views.py) 
+ 
+	Используется СУБД SQLite3 для работы с базой данных
+ 
+	В приложении main расположен только код некоторых html templates + static.css, весь основной код расположен в приложении citystreetshop.
 
 
 4. Зайти в терминал и прописать команды:
  
-		 pip install django
+	   pip install django
 	   
 	   pip install djangorestframework
 	   
