@@ -5,12 +5,17 @@ from django.views.generic import DetailView
 from django.utils import timezone
 from django.db.models import Q, F
 from rest_framework import generics
-from .serializers import CitySerializer
+from .serializers import CitySerializer, ShopSerializer
+
+class ShopCreateAPIView(generics.ListCreateAPIView):
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
 
 
 class CityAPIAll(generics.ListAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
+
 
 
 class CityStreet(DetailView):
@@ -85,3 +90,6 @@ def shop_view(request):
     }
 
     return render(request, 'citystreetshop/shops_view.html', data)
+
+def index(request):
+    return render(request, 'main/index.html')
