@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from django.utils import timezone
 from django.db.models import Q, F
 from rest_framework import generics, status
-from .serializers import CitySerializer, ShopSerializer, StreetSerializer
+from .serializers import CitySerializer, StreetSerializer, ShopWriteSerializer, ShopReadSerializer
 from django_filters import rest_framework
 
 class ShopFilter(rest_framework.FilterSet):
@@ -29,11 +29,15 @@ class ShopFilter(rest_framework.FilterSet):
 
 class ShopCreateAPIView(generics.ListCreateAPIView):
     queryset = Shop.objects.all()
-    serializer_class = ShopSerializer
     filter_backends = [
         rest_framework.DjangoFilterBackend,
     ]
     filterset_class = ShopFilter
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return ShopWriteSerializer
+        return ShopReadSerializer
 
     def perform_create(self, serializer):
         self.instance = serializer.save()
