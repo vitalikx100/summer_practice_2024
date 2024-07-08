@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import City, Shop
+from .models import City, Shop, Street
 
 class ShopSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -22,3 +22,15 @@ class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = ('id', 'title')
+
+
+class StreetSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    city = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Street
+        fields = ("id", "title", "city")
+
+    def get_city(self, obj):
+        return obj.city.title

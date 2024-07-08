@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from django.utils import timezone
 from django.db.models import Q, F
 from rest_framework import generics, status
-from .serializers import CitySerializer, ShopSerializer
+from .serializers import CitySerializer, ShopSerializer, StreetSerializer
 from django_filters import rest_framework
 
 class ShopFilter(rest_framework.FilterSet):
@@ -44,10 +44,17 @@ class ShopCreateAPIView(generics.ListCreateAPIView):
 
 
 
-
 class CityAPIAll(generics.ListAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
+
+
+class CityStreetAPIAll(generics.ListAPIView):
+    serializer_class = StreetSerializer
+
+    def get_queryset(self):
+        city_id = self.kwargs['pk']
+        return Street.objects.filter(city_id=city_id)
 
 
 
