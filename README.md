@@ -15,13 +15,9 @@
 	В приложении main расположен только код некоторых html templates + static.css, весь основной код расположен в приложении citystreetshop.
 
 
-4. Зайти в терминал и прописать команды:
+4. Зайти в терминал и прописать команду:
  
-	   pip install django
-	   
-	   pip install djangorestframework
-	   
-	   pip install django-filter
+	   pip install -r requirements.txt
 
 5. /admin
    
